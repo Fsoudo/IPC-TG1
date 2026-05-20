@@ -111,7 +111,7 @@ Análise completa: [`Docs/02_sistemas_similares/francisco_mytherapy/analise_myth
 | WhatsApp | Comunicação diária da equipa |
 
 ### Melhorias
-|---|---|
+
 |Apresentação| Separar as partes nos slides, não ter tudo junto (Parte do Miguel/Parte do Francisco)|
 |Ser mais explicito na distinção dos cenarios, nao resumir nada, indicar tudo|
 
