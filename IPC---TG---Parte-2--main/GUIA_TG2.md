@@ -39,6 +39,7 @@ App móvel Android de gestão de medicação, com dois perfis de utilizador:
 | F2 | Dashboard Cuidador | Cartões com estado visual de cada paciente |
 | F3 | Detalhe das Tomas | Lista cronológica + botão "Ligar ao Paciente" |
 | F4 | Histórico Semanal | Calendário + exportação de relatório PDF |
+| F5 | Plano de Medicação | Gestão do plano de medicação do paciente (adicionar / editar / remover medicamentos) |
 
 ### HTAs — Cenário 1 e Cenário 2
 
@@ -107,8 +108,10 @@ CENÁRIO 2 (Francisco)
 - [ ] Implementar `CaregiverDashboardActivity` (F2)
 - [ ] Implementar `MedicationDetailActivity` (F3)
 - [ ] Implementar `WeeklyHistoryActivity` (F4)
+- [ ] Implementar `MedicationPlanActivity` (F5) — gestão do plano de medicação por paciente
 - [ ] Garantir que a distinção visual das notificações é mais clara que a do MyTherapy
 - [ ] O botão "Ligar ao Paciente" deve ser CTA principal no F3
+- [ ] F5 deve ser acessível a partir do detalhe do paciente (F3) via botão/ícone "Gerir Plano"
 
 **Miguel (Cenário 1 — Paciente):**
 - [ ] Rever feedback do docente sobre os ecrãs M1–M4 do low-fi
@@ -125,13 +128,31 @@ CENÁRIO 2 (Francisco)
 
 **Francisco (Cenário 2 — Cuidador):**
 
-> **Funcionalidade prioritária:** Dashboard do Cuidador com atualização de estado em tempo real (F2 + F3)
+> **Funcionalidades prioritárias:**
+> 1. Dashboard do Cuidador com atualização de estado em tempo real (F2 + F3)
+> 2. Gestão do Plano de Medicação por paciente (F5)
 
+**Dashboard + Detalhe (F2 + F3):**
 - [ ] Lista de pacientes no dashboard com indicador de cor por estado
 - [ ] Toque num paciente → navega para detalhe das tomas
 - [ ] Lista de medicamentos com estados: ✅ Tomado / ❌ Ignorado / ⏳ Pendente / ⚠️ Atraso
 - [ ] Botão **"Ligar ao paciente"** com `Intent.ACTION_DIAL`
 - [ ] Simulação de transição de estado (botão "Simular toma" para a demo)
+
+**Plano de Medicação (F5):**
+- [ ] Botão "Gerir Plano" no detalhe do paciente (F3) abre o F5
+- [ ] Lista dos medicamentos atuais do paciente (nome, dose, horário, frequência)
+- [ ] Botão **"Adicionar Medicamento"** (FAB) abre formulário com:
+  - Nome do medicamento (texto)
+  - Dose (ex.: 20mg)
+  - Horário(s) de toma (TimePicker, vários permitidos)
+  - Frequência (diária / dias específicos da semana)
+  - Notas opcionais
+- [ ] Editar medicamento existente (toque no item)
+- [ ] Remover medicamento (swipe ou botão com confirmação)
+- [ ] Persistência local (SharedPreferences ou Room) para guardar entre sessões
+- [ ] Validação de campos obrigatórios antes de gravar
+- [ ] Após adicionar/editar, o plano reflete-se no dashboard (F2) e detalhe (F3) do paciente
 
 **Miguel (Cenário 1 — Paciente):**
 
@@ -163,6 +184,7 @@ CENÁRIO 2 (Francisco)
 | F-T1 | "Recebeste uma notificação. Descobre qual o medicamento em falta do António." | ≤ 3 cliques |
 | F-T2 | "Liga ao paciente através da app." | Aciona o botão "Ligar ao Paciente" |
 | F-T3 | "Consulta o histórico semanal do António." | Chega ao F4 |
+| F-T4 | "Adiciona um novo medicamento (Aspirina 100mg, 08:00, diário) ao plano do António." | Grava com sucesso e o medicamento aparece no plano |
 
 #### Tarefas a propor — Miguel (Cenário 1)
 
@@ -240,7 +262,7 @@ Parte 2 (a fazer)
       → Subseção Francisco (ecrãs F1–F4)
   - Funcionalidades implementadas
       → Miguel: Notificação acionável + Confirmação de toma
-      → Francisco: Dashboard com estado em tempo real + ACTION_DIAL
+      → Francisco: Dashboard com estado em tempo real + ACTION_DIAL + Gestão do Plano de Medicação
   - Avaliação com utilizadores
       → Metodologia conjunta
       → Resultados Miguel (M-T1, M-T2, M-T3)
@@ -285,10 +307,11 @@ Contém: relatório PDF + apresentação + link GitHub da app.
 - [ ] Código no GitHub (repositório TG2 novo)
 
 ### Francisco (Cenário 2)
-- [ ] Ecrãs F1–F4 navegáveis
+- [ ] Ecrãs F1–F5 navegáveis
 - [ ] Dashboard com código de cores
 - [ ] Botão "Ligar ao Paciente" funcional (ACTION_DIAL)
 - [ ] Simulação de atualização de estado
+- [ ] Gestão do plano de medicação (adicionar / editar / remover) funcional e persistente
 
 ### Miguel (Cenário 1)
 - [ ] Ecrãs M1–M4 navegáveis
